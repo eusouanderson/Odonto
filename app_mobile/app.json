@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "31b99845-12ad-4b52-81ba-fe9a74eb178d"
+      }
+    },
+    "owner": "eusouanderson",
+    "android": {
+      "package": "com.eusouanderson.app"
+    }
+  }
+}

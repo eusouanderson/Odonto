@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "expo": "^52.0.28",
+    "expo-status-bar": "^2.0.1",
+    "react-native": "0.77.0",
+    "react-native-web": "^0.19.13",
+    "styled-components": "^6.1.14",
+    "@expo/metro-runtime": "~4.0.1",
+    "expo-av": "~15.0.2"
+  }
+}
