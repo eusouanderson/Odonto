@@ -15,8 +15,8 @@
       </video>
     </div>
     <div class="content">
-      <h1>Bem-vindo à Dental Clinic</h1>
-      <p>Nosso objetivo é cuidar do seu sorriso!</p>
+      <h1>Welcome to Dental Clinic</h1>
+      <p>We're glad you're here!</p>
       <img class="logo" src="../assets/logo.png" alt="Dental Clinic Logo">
     </div>
   </div>

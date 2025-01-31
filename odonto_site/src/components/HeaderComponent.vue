@@ -1,5 +1,5 @@
 <template>
-  <header :class="{'header-small': isHeaderSmall}" class="bg-blue-800 p-4 shadow-lg transition-all duration-1000 ease-in-out">
+  <header :class="{'header-small': isHeaderSmall, 'header-hidden': isHeaderHidden}" class="bg-blue-800 p-4 shadow-lg transition-all duration-1000 ease-in-out">
     <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
       <img 
         v-show="!isMenuOpen"
@@ -12,9 +12,9 @@
 
       <!-- Navegação para desktop (aparece apenas no desktop) -->
       <nav class="hidden md:flex space-x-6 text-white font-medium mt-4 md:mt-0 md:flex-row flex-col">
-        <a href="#about" class="hover:text-blue-600 transition-colors duration-300">About</a>
-        <a href="#services" class="hover:text-blue-600 transition-colors duration-300">Services</a>
-        <a href="#contact" class="hover:text-blue-600 transition-colors duration-300">Contact</a>
+        <a href="/" class="hover:text-blue-600 transition-colors duration-300">Home</a>
+        <a href="/services" class="hover:text-blue-600 transition-colors duration-300">Services</a>
+        <a href="/contact" class="hover:text-blue-600 transition-colors duration-300">Contact</a>
       </nav>
 
       <!-- Menu hamburguer para mobile (aparece apenas no mobile) -->
@@ -31,12 +31,11 @@
 
     <!-- Menu mobile -->
     <div v-if="isMenuOpen" class="md:hidden flex flex-col items-center space-y-4 p-4 bg-blue-800 text-white mt-4">
-      <a href="#home" class="hover:text-white-600">Home</a>
-      <a href="#about" class="hover:text-white-600">About</a>
-      <a href="#services" class="hover:text-white-600">Services</a>
-      <a href="#contact" class="hover:text-white-600">Contact</a>
+      <a href="/" class="hover:text-white-600">Home</a>
+      <a href="/about" class="hover:text-white-600">About</a>
+      <a href="/services" class="hover:text-white-600">Services</a>
+      <a href="/contact" class="hover:text-white-600">Contact</a>
     </div>
-
   </header>
 </template>
 
@@ -46,18 +45,35 @@ export default {
   data() {
     return {
       isMenuOpen: false,
-      isHeaderSmall: false
+      isHeaderSmall: false,
+      isHeaderHidden: false,
+      lastScrollY: 0
     };
   },
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    handleScroll() {
+      if (window.scrollY > this.lastScrollY && window.scrollY > 50) {
+        this.isHeaderHidden = true;
+      } else if (window.scrollY < this.lastScrollY) {
+        this.isHeaderHidden = false;
+      }
+      this.lastScrollY = window.scrollY;
     }
   },
   mounted() {
     setTimeout(() => {
       this.isHeaderSmall = true;
     }, 1500);
+
+    // Adiciona o listener de scroll ao componente
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    // Remove o listener de scroll ao destruir o componente
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>
@@ -105,5 +121,11 @@ export default {
 /* Transição de redução do cabeçalho */
 .header-small {
   padding: 0.5rem 0; /* Reduz a altura do cabeçalho quando o logo diminui */
+}
+
+/* Estilo para cabeçalho oculto */
+.header-hidden {
+  transform: translateY(-100%); /* Move o cabeçalho para cima */
+  transition: transform 0.3s ease-in-out; /* Suaviza o movimento */
 }
 </style>
