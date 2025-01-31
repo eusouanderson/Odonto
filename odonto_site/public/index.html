@@ -1,23 +1,89 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
+    <!-- Meta Information for SEO and Compatibility -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the Website (Dynamic Title from Webpack) -->
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <head>
-      <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Description for SEO -->
+    <meta name="description" content="Dental Clinic - Offering quality dental care services with a professional team.">
+    
+    <!-- Open Graph Tags for Social Media Sharing -->
+    <meta property="og:title" content="Dental Clinic">
+    <meta property="og:description" content="Dental Clinic - Offering quality dental care services with a professional team.">
+    <meta property="og:image" content="/assets/images/dental-clinic-og-image.jpg">
+    <meta property="og:url" content="<%= BASE_URL %>">
+    
+    <!-- Twitter Card for Better Presentation on Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dental Clinic">
+    <meta name="twitter:description" content="Dental Clinic - Offering quality dental care services with a professional team.">
+    <meta name="twitter:image" content="/assets/images/dental-clinic-twitter-image.jpg">
+    
+    <!-- Favicon Icons -->
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- External Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Preload Critical Fonts for Better Performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" as="style">
+
+    <!-- Link to external CSS (if needed) -->
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <!-- Schema.org Markup for Google+ -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "DentalCare",
+        "name": "Dental Clinic",
+        "url": "<%= BASE_URL %>",
+        "description": "Offering professional dental care services including general dentistry, orthodontics, and cosmetic dentistry.",
+        "logo": "/assets/images/logo.png",
+        "image": "/assets/images/dental-clinic-image.jpg",
+        "sameAs": [
+          "https://facebook.com/dentalclinic",
+          "https://twitter.com/dentalclinic",
+          "https://linkedin.com/company/dentalclinic"
+        ]
+      }
+    </script>
+
+    <!-- Accessibility Considerations -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Dental Clinic Team">
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>We apologize, but <%= htmlWebpackPlugin.options.title %> doesn't function properly without JavaScript enabled. Please enable JavaScript to continue.</strong>
     </noscript>
+    
+    <!-- Main App Container -->
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+
+    <!-- Analytics Scripts (Google Analytics, etc.) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-XXXXXXX-X');
+    </script>
+    
+    <!-- App-specific Scripts -->
+    <script src="<%= BASE_URL %>js/main.js"></script>
   </body>
 </html>

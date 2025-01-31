@@ -23,7 +23,18 @@
           <i class="fab fa-whatsapp"></i>
         </a>
       </div>
-      
+      <!-- Marcas Patrocinadas -->
+      <div class="flex space-x-4 mt-4 md:mt-0">
+        <a href="#" class="text-gray-500 hover:text-blue-600">
+          <img src="@/assets/logo_aleatorio.png" alt="Marca 1" />
+        </a>
+        <a href="#" class="text-gray-500 hover:text-blue-600">
+          <img src="@/assets/logo_aleatorio.png" alt="Marca 1" />
+        </a>
+        <a href="#" class="text-gray-500 hover:text-blue-600">
+          <img src="@/assets/logo_aleatorio.png" alt="Marca 1" />
+        </a>
+      </div>
       <!-- Direitos Autorais -->
       <p class="text-gray-500 text-sm mt-4 md:mt-0">&copy; 2024 Dental Clinic. Todos os direitos reservados.</p>
     </div>
@@ -37,4 +48,13 @@ export default {
 </script>
 
 <style scoped>
+img {
+  max-width: 100px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+
+}
 </style>
