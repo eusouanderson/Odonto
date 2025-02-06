@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { RegisterModule } from './modules/register.module';
-import { ToothModule } from './modules/tooth.module';  // Corrigido aqui
+import { ToothModule } from './modules/tooth.module';  
 
 @Module({
   imports: [
