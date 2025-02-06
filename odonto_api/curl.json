@@ -1,0 +1,17 @@
+curl -X POST http://localhost:3000/tooth \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Dente Incisivo",
+    "type": "Incisivo",
+    "condition": "Bom"
+}'
+
+curl -X POST http://localhost:3000/registers \
+    -H "Content-Type: application/json" \
+    -d '{
+    "name": "Aoão da Silva",
+    "cpf": "123.656.789-00",
+    "phone": "(11) 91234-5678",
+    "email": "joaso@email.com",
+    "address": "Rua das Clínicas, 123"
+}'
