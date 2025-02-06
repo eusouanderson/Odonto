@@ -1,0 +1,3 @@
+[submodule "odonto_api"]
+	path = odonto_api
+	url = https://github.com/eusouanderson/Odonto.git
