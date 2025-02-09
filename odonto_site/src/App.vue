@@ -1,23 +1,17 @@
 <template>
   <div id="app">
     <HeaderComponent />
-    
-    <!-- O Router-view agora é responsável por renderizar tanto HomeView quanto ContactView -->
     <transition name="fade">
       <router-view />
     </transition>
 
-    <!-- Botão para exibir/ocultar o formulário do paciente -->
     <button class="animated-button" @click="togglePatientForm">
       {{ showPatientForm ? 'Close' : 'Open' }} Patient Inclusion
     </button>
-    <!-- Exibe PatientForm condicionalmente -->
     <PatientForm v-if="showPatientForm" />
-
     <FooterComponent />
   </div>
 </template>
-
 
 <script>
 import HeaderComponent from './components/HeaderComponent.vue'
