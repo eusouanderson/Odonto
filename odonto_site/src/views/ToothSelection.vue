@@ -70,7 +70,6 @@ export default {
         { id: 16, name: "Terceiro Molar Superior Direito", selected: false }
       ],
 
-      // Dentes inferiores
       bottomTeeth: [
         { id: 17, name: "Terceiro Molar Inferior Esquerdo", selected: false },
         { id: 18, name: "Segundo Molar Inferior Esquerdo", selected: false },
