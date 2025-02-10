@@ -95,8 +95,33 @@ export default {
     selectTooth(id, row) {
       const teethRow = row === "top" ? this.topTeeth : this.bottomTeeth;
       const tooth = teethRow.find((t) => t.id === id);
-      tooth.selected = !tooth.selected;
-      console.log(`Dente ${id} selecionado: ${tooth.selected}`);
+      if (tooth) tooth.selected = !tooth.selected;
+    },
+
+     async sendSelectedTeeth() {
+      const selectedTeeth = [...this.topTeeth, ...this.bottomTeeth].filter((t) => t.selected);
+      try {
+        await fetch("http://localhost:3000/tooth", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(selectedTeeth)
+        });
+        alert("Dentes enviados com sucesso!");
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async sendPatientData() {
+      try {
+        await fetch("http://localhost:3000/registers", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.patient)
+        });
+        alert("Paciente cadastrado com sucesso!");
+      } catch (error) {
+        console.error(error);
+      }
     },
     hoverTooth(name) {
       this.hoveredTooth = name;

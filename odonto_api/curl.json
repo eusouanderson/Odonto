@@ -9,9 +9,9 @@ curl -X POST http://localhost:3000/tooth \
 curl -X POST http://localhost:3000/registers \
     -H "Content-Type: application/json" \
     -d '{
-    "name": "Aoão da Silva",
-    "cpf": "123.656.789-00",
+    "name": "Anderson Silva",
+    "cpf": "35924838897",
     "phone": "(11) 91234-5678",
-    "email": "joaso@email.com",
+    "email": "eusoaudnersof@example.com",
     "address": "Rua das Clínicas, 123"
 }'
