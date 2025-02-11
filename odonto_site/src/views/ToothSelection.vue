@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { sendSelectedTeeth } from '@/service/api.service';
 export default {
   data() {
     return {
@@ -96,32 +97,18 @@ export default {
       const tooth = teethRow.find((t) => t.id === id);
       if (tooth) tooth.selected = !tooth.selected;
     },
-
-     async sendSelectedTeeth() {
-      const selectedTeeth = [...this.topTeeth, ...this.bottomTeeth].filter((t) => t.selected);
-      try {
-        await fetch("http://localhost:3000/tooth", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(selectedTeeth)
-        });
-        alert("Dentes enviados com sucesso!");
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    async sendPatientData() {
-      try {
-        await fetch("http://localhost:3000/registers", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(this.patient)
-        });
-        alert("Paciente cadastrado com sucesso!");
-      } catch (error) {
-        console.error(error);
-      }
-    },
+    async SubmitEvent() {
+    const selectedTeeth = [...this.topTeeth, ...this.bottomTeeth].filter(t => t.selected);
+    try {
+      await sendSelectedTeeth(selectedTeeth);
+      alert("Dentes enviados com sucesso!");
+      this.$router.push('/');
+    } catch (error) {
+      console.error("Erro ao enviar dentes:", error);
+      alert("Ocorreu um erro ao enviar os dentes.");
+    }
+  },
+    
     hoverTooth(name) {
       this.hoveredTooth = name;
     }

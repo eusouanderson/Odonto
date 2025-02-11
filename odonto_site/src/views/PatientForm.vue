@@ -61,24 +61,30 @@
 
       <div>
         <label class="block text-gray-700 font-semibold mb-1">Address</label>
-        <textarea v-model="patient.address" required class="input" placeholder="Street, Number, Neighborhood"></textarea>
+        <textarea
+          v-model="patient.address"
+          required
+          class="input"
+          placeholder="Street, Number, Neighborhood"
+        ></textarea>
       </div>
-      
+
       <ToothSelection />
 
-      <button type="submit" class="btn">Register</button>
+      <button type="submit" @click="handleSubmit" class="btn">Register</button>
     </form>
   </div>
 </template>
 
 <script>
+import { sendPatientData } from "@/service/api.service";
 import ToothSelection from "./ToothSelection.vue";
 import { mask } from "vue-the-mask";
 
 export default {
   directives: { mask },
   components: {
-    ToothSelection,  
+    ToothSelection,
   },
   data() {
     return {
@@ -93,9 +99,18 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      console.log("Patient registered:", this.patient);
-      alert("Patient registered successfully!");
+    handleSubmit() {
+      this.$emit("submit", this.patient);
+    },
+    async submitForm() {
+      try {
+        await sendPatientData(this.patient);
+        alert("Patient registered successfully!");
+        this.$router.push("/");
+      } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while registering the patient.");
+      }
     },
   },
 };
@@ -108,7 +123,6 @@ h2 {
 .input {
   @apply w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400;
 }
-
 .btn {
   @apply w-full bg-blue-600 text-white py-2 rounded-lg font-bold text-lg hover:bg-blue-700 transition duration-300;
 }
