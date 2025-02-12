@@ -5,7 +5,7 @@ export type RegisterDocument = Register & Document;
 
 @Schema()
 export class Register {
-  @Prop({ required: true })
+  @Prop()
   name: string;
 
   @Prop({ required: true, unique: true })

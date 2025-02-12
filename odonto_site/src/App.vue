@@ -15,7 +15,7 @@
 
 <script>
 import HeaderComponent from './components/HeaderComponent.vue'
-import PatientForm from './views/PatientForm.vue'
+import PatientForm from './components/PatientForm.vue'
 import FooterComponent from './components/FooterComponent.vue'
 
 export default {

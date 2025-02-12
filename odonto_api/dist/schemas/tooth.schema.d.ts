@@ -1,11 +1,12 @@
 import { Document } from 'mongoose';
+import { Schema as MongooseSchema } from 'mongoose';
 export declare class Tooth extends Document {
-    id: string;
+    id: string | number;
     name: string;
     type: string;
     condition: string;
 }
-export declare const ToothSchema: import("mongoose").Schema<Tooth, import("mongoose").Model<Tooth, any, any, any, Document<unknown, any, Tooth> & Tooth & Required<{
+export declare const ToothSchema: MongooseSchema<Tooth, import("mongoose").Model<Tooth, any, any, any, Document<unknown, any, Tooth> & Tooth & Required<{
     _id: unknown;
 }> & {
     __v: number;

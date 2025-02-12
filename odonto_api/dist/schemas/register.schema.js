@@ -15,7 +15,7 @@ let Register = class Register {
 };
 exports.Register = Register;
 __decorate([
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Register.prototype, "name", void 0);
 __decorate([

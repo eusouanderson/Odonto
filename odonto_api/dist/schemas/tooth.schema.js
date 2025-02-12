@@ -12,12 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ToothSchema = exports.Tooth = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const mongoose_3 = require("mongoose");
 let Tooth = class Tooth extends mongoose_2.Document {
 };
 exports.Tooth = Tooth;
 __decorate([
-    (0, mongoose_1.Prop)({ required: false }),
-    __metadata("design:type", String)
+    (0, mongoose_1.Prop)({ required: false, type: mongoose_3.Schema.Types.Mixed }),
+    __metadata("design:type", Object)
 ], Tooth.prototype, "id", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
@@ -32,7 +33,7 @@ __decorate([
     __metadata("design:type", String)
 ], Tooth.prototype, "condition", void 0);
 exports.Tooth = Tooth = __decorate([
-    (0, mongoose_1.Schema)()
+    (0, mongoose_1.Schema)({ toJSON: { virtuals: true, transform: (doc, ret) => { delete ret._id; } } })
 ], Tooth);
 exports.ToothSchema = mongoose_1.SchemaFactory.createForClass(Tooth);
 //# sourceMappingURL=tooth.schema.js.map
