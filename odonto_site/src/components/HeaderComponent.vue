@@ -1,5 +1,8 @@
 <template>
-  <header :class="{'header-small': isHeaderSmall, 'header-hidden': isHeaderHidden}" class="bg-blue-800 p-4 shadow-lg transition-all duration-1000 ease-in-out">
+  <header 
+    :class="{'header-small': isHeaderSmall, 'header-hidden': isHeaderHidden}" 
+    class="bg-blue-800 p-4 shadow-lg transition-all duration-1000 ease-in-out fixed top-0 left-0 w-full z-50"
+  >
     <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
       <img 
         v-show="!isMenuOpen"
@@ -10,14 +13,14 @@
       <h1 class="text-white text-4xl font-semibold opacity-0 animate-fadeIn md:ml-4">Dental Clinic</h1>
       <h4 class="text-white text-2xl font-semibold opacity-0 animate-fadeIn md:ml-4">Dr. Corneaud</h4>
 
-      <!-- Navegação para desktop (aparece apenas no desktop) -->
-      <nav class="hidden md:flex space-x-6 text-white font-medium mt-4 md:mt-0 md:flex-row flex-col">
+      <!-- Navegação para desktop -->
+      <nav class="hidden md:flex space-x-6 text-white font-medium mt-4 md:mt-0">
         <a href="/" class="hover:text-blue-600 transition-colors duration-300">Home</a>
         <a href="/services" class="hover:text-blue-600 transition-colors duration-300">Services</a>
         <a href="/contact" class="hover:text-blue-600 transition-colors duration-300">Contact</a>
       </nav>
 
-      <!-- Menu hamburguer para mobile (aparece apenas no mobile) -->
+      <!-- Menu hamburguer para mobile -->
       <button 
         @click="toggleMenu" 
         class="md:hidden flex items-center justify-center text-white hover:bg-blue-600 p-2 rounded-md"
@@ -55,11 +58,8 @@ export default {
       this.isMenuOpen = !this.isMenuOpen;
     },
     handleScroll() {
-      if (window.scrollY > this.lastScrollY && window.scrollY > 50) {
-        this.isHeaderHidden = true;
-      } else if (window.scrollY < this.lastScrollY) {
-        this.isHeaderHidden = false;
-      }
+      this.isHeaderSmall = window.scrollY > 5; 
+      this.isHeaderHidden = window.scrollY > this.lastScrollY && window.scrollY > 10; 
       this.lastScrollY = window.scrollY;
     }
   },
@@ -67,12 +67,9 @@ export default {
     setTimeout(() => {
       this.isHeaderSmall = true;
     }, 1500);
-
-    // Adiciona o listener de scroll ao componente
     window.addEventListener('scroll', this.handleScroll);
   },
   beforeUnmount() {
-    // Remove o listener de scroll ao destruir o componente
     window.removeEventListener('scroll', this.handleScroll);
   }
 }
@@ -80,21 +77,13 @@ export default {
 
 <style scoped>
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes logoGrowShrink {
-  0% {
-    transform: scale(8);  /* Logo começa grande */
-  }
-  100% {
-    transform: scale(1);  /* Logo reduz para tamanho normal */
-  }
+  0% { transform: scale(8); }
+  100% { transform: scale(1); }
 }
 
 .animate-logo {
@@ -105,27 +94,30 @@ export default {
   animation: fadeIn 1.5s ease-in-out forwards;
 }
 
-/* Estilo do logo */
 .logo {
   width: auto;
-  max-width: 200px; /* Ajusta o tamanho máximo do logo */
-  transition: transform 0.5s ease; /* Suaviza a transição do logo */
+  max-width: 200px;
+  transition: transform 0.5s ease;
 }
 
-/* Estilo do cabeçalho */
+/* Mantém o cabeçalho fixo */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Reduz a altura do cabeçalho */
 .header-small {
-  padding: 1rem 0; /* Cabeçalho reduzido */
-  transition: padding 1s ease-in-out; /* Suaviza a transição do padding */
+  padding: 0.5rem 0;
 }
 
-/* Transição de redução do cabeçalho */
-.header-small {
-  padding: 0.5rem 0; /* Reduz a altura do cabeçalho quando o logo diminui */
-}
-
-/* Estilo para cabeçalho oculto */
+/* Esconde o cabeçalho ao rolar para baixo */
 .header-hidden {
-  transform: translateY(-100%); /* Move o cabeçalho para cima */
-  transition: transform 0.3s ease-in-out; /* Suaviza o movimento */
+  opacity: 0;
+  visibility: hidden;
 }
 </style>
